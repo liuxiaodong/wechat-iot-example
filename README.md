@@ -1,6 +1,6 @@
 # wechat-iot-example
-微信 IOT 蓝牙硬件设备操作 demo
-
+微信 IOT 蓝牙硬件设备操作 demo  
+<img src="https://github.com/liuxiaodong/wechat-iot-example/blob/master/public/images/iot_small.jpg" height="500"></img>
 ##### 获取代码并安装项目依赖的库
 
 ```
