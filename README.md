@@ -30,7 +30,7 @@
 
 ##### 公众号配置
 
-* 在公众号配置好 URL(服务器地址) 为 `http://youdomian.com/wechat`
+* 在公众号配置好 URL(服务器地址) 为 `http://yourdomian.com/wechat`
 * 如图所在位置	
 <img src="https://github.com/liuxiaodong/wechat-iot-example/blob/master/public/images/mp.png" height="200"></img>
 
