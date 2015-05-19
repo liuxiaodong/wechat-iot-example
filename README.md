@@ -8,7 +8,7 @@
 		
 		npm install
 		
-		cd public/scripts && bower install
+		cd public && bower install
 ```
 
 ##### 修改配置文件
