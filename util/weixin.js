@@ -147,7 +147,7 @@ weixin.trap.text(/\S/, function(req, res){
       for(var i=0; i<devices.length; i++){
         ds += ('\n' + devices[i].device_id);
       }
-      req.user.text(ds);
+      weixin.api.sendText(appid, openid, ds);
     });
   } else if(content_lower.indexOf('iot:') === 0 || content_lower.indexOf('iot：') === 0) {
     // 给设备发送指令
