@@ -18,7 +18,11 @@ module.exports = function(app){
       return callback(null, codeMap[code]);
     }
     weixin.api.getOauthAccessToken(appid, code, function(err, data){
-      return callback(err, data && data.openid);
+      var openid = data && data.openid;
+      if (openid) {
+        codeMap[code] = openid;
+      }
+      return callback(err, openid);
     });
   };
 
