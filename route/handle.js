@@ -108,7 +108,7 @@ module.exports = function(app){
         if (err) {
           return res.json(400).json({errMsg: 'Bind failure', info: JSON.stringify(err)});
         }
-        res.json({result: 'success'});
+        res.json('ok');
       });
     } else { // 强制绑定
       weixin.api.compelUnbindDevice(appid, deviceid, openid, function(err){
