@@ -13,7 +13,7 @@ module.exports = function(app){
 
    // 缓存 code 对应的 openid，以免页面刷新后获取不到 openid
   var codeMap = {};
-  var getOpenid = function(code) {
+  var getOpenid = function(code, callback) {
     if (codeMap[code]) {
       return callback(null, codeMap[code]);
     }
