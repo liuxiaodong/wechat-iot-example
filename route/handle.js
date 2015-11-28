@@ -10,6 +10,18 @@ module.exports = function(app){
    *
    * @param {String} url H5 当前页面的 url（去掉 hash）
    */
+
+   // 缓存 code 对应的 openid，以免页面刷新后获取不到 openid
+  var codeMap = {};
+  var getOpenid = function(code) {
+    if (codeMap[code]) {
+      return callback(null, codeMap[code]);
+    }
+    weixin.api.getOauthAccessToken(appid, code, function(err, data){
+      return callback(err, data && data.openid);
+    });
+  };
+
   app.get('/sign', function(req, res){
     var url = req.query.url;
     var code = req.query.code;
@@ -19,12 +31,12 @@ module.exports = function(app){
     url = decodeURIComponent(url);
     // 若有 code，说明用户是通过授权近入的页面，通过接口那个用户的 openid，页面绑定设备时需用
     if (code) {
-      weixin.api.getOauthAccessToken(appid, code, function(err, data){
+      getOpenid(code, function(err, openid){
         weixin.api.getTicketToken(function(err, token){
           if (!token) return res.json({});
           var ret = weixin.util.getJsConfig(token.ticket, url);
           ret.appid = config.weixin.appid;
-          ret.openid = data && data.openid;
+          ret.openid = openid;
           console.log('token:  ', token);
           console.log('signData:  ', ret);
           res.json(ret);
