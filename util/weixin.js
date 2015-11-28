@@ -15,6 +15,8 @@ if (!fs.existsSync(jsApiTicketFile)) {
   fs.appendFileSync(jsApiTicketFile, '', {encoding: 'utf8'});
 }
 
+var noop = function(){};
+
 var weixin = require("weixin-trap")({
   getBody: false,
   parseXml: false,
@@ -147,7 +149,7 @@ weixin.trap.text(/\S/, function(req, res){
       for(var i=0; i<devices.length; i++){
         ds += ('\n' + devices[i].device_id);
       }
-      weixin.api.sendText(appid, openid, ds);
+      weixin.api.sendText(appid, openid, ds, noop);
     });
   } else if(content_lower.indexOf('iot:') === 0 || content_lower.indexOf('iot：') === 0) {
     // 给设备发送指令
@@ -171,7 +173,7 @@ weixin.trap.text(/\S/, function(req, res){
       if (err){
         replyText = '给设备写数据失败: ' + JSON.stringify(err);
       }
-      return weixin.api.sendText(appid, openid, replyText);
+      return weixin.api.sendText(appid, openid, replyText, noop);
     });
   } else {
     res.text('我们暂时还没有开通微信客服服务，有问题请联系电话客服：1111111');
@@ -197,7 +199,7 @@ weixin.trap.device(function(req, res){
   } else {
     replyText += '什么都不想说';
   }
-  weixin.api.sendText(appid, openid, replyText);
+  weixin.api.sendText(appid, openid, replyText, noop);
 });
 
 module.exports = weixin;
