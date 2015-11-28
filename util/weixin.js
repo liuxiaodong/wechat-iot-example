@@ -185,7 +185,7 @@ weixin.trap.text(/\S/, function(req, res){
  * 接受设备发送到的消息并回复
  */
 weixin.trap.device(function(req, res){
-  //res.device(new Buffer("1111", "hex")); // 响应设备
+  res.device(new Buffer("1111", "hex")); // 响应设备
   var openid = req.body.from_user_name;
   var content = req.body.content;
   if(content) {
