@@ -67,8 +67,8 @@ var weixin = require("weixin-trap")({
     id: config.weixin.id, // 微信公众号 id
     appid: config.weixin.appid,
     token: config.weixin.token,
-    appsecret: config.weixin.appsecret
-    //encryptkey: config.weixin.encryptkey
+    appsecret: config.weixin.appsecret,
+    encryptkey: config.weixin.encryptkey // 若公众号配置加密 key，则必填此参数
   }
 });
 
